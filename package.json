@@ -1,0 +1,34 @@
+{
+  "name": "discord.js-repl",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yuta0801/discord.js-repl.git"
+  },
+  "author": "yuta <yuta030801@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "discord.js": "^11.3.2",
+    "global": "^4.3.2",
+    "inquirer": "^6.0.0",
+    "preferences": "^1.0.2"
+  },
+  "bin": {
+    "discord": "index.js"
+  },
+  "description": "",
+  "bugs": {
+    "url": "https://github.com/yuta0801/discord.js-repl/issues"
+  },
+  "homepage": "https://github.com/yuta0801/discord.js-repl#readme",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "discord.js",
+    "repl",
+    "test"
+  ]
+}
