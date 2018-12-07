@@ -11,8 +11,8 @@
   "license": "MIT",
   "private": true,
   "dependencies": {
-    "discord.js": "^11.3.2",
-    "inquirer": "^6.0.0",
+    "discord.js": "^11.4.2",
+    "inquirer": "^6.2.1",
     "preferences": "^1.0.2"
   },
   "devDependencies": {
