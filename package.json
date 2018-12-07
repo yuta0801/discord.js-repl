@@ -10,7 +10,6 @@
   "license": "MIT",
   "dependencies": {
     "discord.js": "^11.3.2",
-    "global": "^4.3.2",
     "inquirer": "^6.0.0",
     "preferences": "^1.0.2"
   },
