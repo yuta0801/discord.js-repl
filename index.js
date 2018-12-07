@@ -32,4 +32,8 @@ async function askToken() {
   return token
 }
 
-process.on('unhandledRejection', err => console.log(err))
+process.on('unhandledRejection', error => {
+  if (error.message === 'Incorrect login details were provided.')
+    return console.error('Invalid token were provided.')
+  else console.error(error)
+})
