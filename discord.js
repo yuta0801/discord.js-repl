@@ -4,7 +4,7 @@ const Discord = require('discord.js')
 const client = new Discord.Client()
 
 module.exports = (token, prefs) => {
-  let onMessage = () => {}
+  const refs = { onMessage: () => {} }
 
   client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
@@ -15,11 +15,11 @@ module.exports = (token, prefs) => {
     r.on('exit', () => process.exit())
   })
 
-  client.on('message', onMessage)
+  client.on('message', message => refs.onMessage(message))
 
   client.login(token)
 
-  function onMsg(callback) {
-    onMessage = callback
+  const onMsg = callback => {
+    refs.onMessage = callback
   }
 }
