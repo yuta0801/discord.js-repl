@@ -12,10 +12,10 @@
   "private": true,
   "dependencies": {
     "discord.js": "^11.4.2",
-    "inquirer": "^6.2.1",
-    "preferences": "^1.0.2"
+    "inquirer": "^7.0.0",
+    "preferences": "caffeinalab/preferences#7469451"
   },
   "devDependencies": {
-    "eslint": "^5.9.0"
+    "eslint": "^6.7.1"
   }
 }
