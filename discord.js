@@ -1,9 +1,11 @@
 const repl = require('repl')
 
-const Discord = require('discord.js')
-const client = new Discord.Client()
+module.exports = (version, token, prefs) => {
+  const Discord = require('discord.js-' + version)
+  const client = new Discord.Client()
 
-module.exports = (token, prefs) => {
+  console.log(`Node.js ${process.version}, Discord.js ${Discord.version}`)
+
   const refs = { onMessage: () => {} }
 
   client.on('ready', () => {
