@@ -13,10 +13,10 @@
   "dependencies": {
     "discord.js-v11": "npm:discord.js@11",
     "discord.js-v12": "npm:discord.js@12",
-    "inquirer": "^7.0.0",
+    "inquirer": "^7.1.0",
     "preferences": "caffeinalab/preferences#7469451"
   },
   "devDependencies": {
-    "eslint": "^6.7.1"
+    "eslint": "^6.8.0"
   }
 }
