@@ -14,6 +14,7 @@ module.exports = (version, token, prefs) => {
     const r = repl.start()
     r.context.client = client
     r.context.onMsg = onMsg
+    r.context.offMsg = offMsg
     r.context.Discord = Discord
     r.on('exit', () => process.exit())
   })
@@ -22,7 +23,6 @@ module.exports = (version, token, prefs) => {
 
   client.login(token)
 
-  const onMsg = callback => {
-    refs.onMessage = callback
-  }
+  const onMsg = callback => refs.onMessage = callback
+  const offMsg = () => refs.onMessage = () => {}
 }
