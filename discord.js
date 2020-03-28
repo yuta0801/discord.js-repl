@@ -14,6 +14,7 @@ module.exports = (version, token, prefs) => {
     const r = repl.start()
     r.context.client = client
     r.context.onMsg = onMsg
+    r.context.Discord = Discord
     r.on('exit', () => process.exit())
   })
 
