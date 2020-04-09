@@ -10,7 +10,7 @@ module.exports = (version, token, prefs) => {
 
   client.on('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`)
-    prefs[client.user.tag] = token
+    prefs.tokens[token] = client.user.tag
     const r = repl.start()
     r.context.client = client
     r.context.onceMsg = onceMsg

@@ -7,19 +7,30 @@ const run = require('./run')
 const prefs = new Preferences('discord.js-repl')
 
 !(async () => {
+  setup()
+
   const isRun = process.argv.includes('run')
+  const isSelect = process.argv.includes('--select')
   const version = process.argv.includes('-11') ? 'v11' : 'v12'
-  let choice = await selectAccount(prefs)
-  if (choice === 'new') choice = await askToken()
-  if (isRun) run(version, choice)
-  else discord(version, choice, prefs)
+
+  if (prefs.last && !isSelect)
+    return start(isRun, version, prefs.last)
+
+  let token = await selectAccount()
+  if (token === 'new') token = await askToken()
+  prefs.last = token
+  start(isRun, version, token)
 })()
 
-async function selectAccount(prefs) {
-  const accounts = Object.entries(prefs).map(([name, value]) => ({
-    name,
-    value,
-  }))
+function start(isRun, version, token) {
+  if (isRun) run(version, token)
+  else discord(version, token, prefs)
+}
+
+async function selectAccount() {
+  const accounts = Object.entries(prefs.tokens)
+    .map(([value, name]) => ({ name, value }))
+
   const { token } = await inquirer.prompt({
     type: 'list',
     name: 'token',
@@ -34,7 +45,7 @@ async function askToken() {
     type: 'input',
     name: 'token',
     message: 'Enter your Discord token',
-    validate: val => (val ? true : 'Please enter your Discord token'),
+    validate: val => val ? true : 'Please enter your Discord token',
   })
   return token
 }
@@ -44,3 +55,16 @@ process.on('unhandledRejection', error => {
     return console.error('Invalid token were provided.')
   else console.error(error)
 })
+
+function setup() {
+  if (!prefs.tokens) prefs.tokens = {}
+
+  // migration
+  const oldAccounts = Object.entries(prefs)
+    .filter(([key]) => !['tokens', 'last'].includes(key))
+
+  oldAccounts.forEach(([name, token]) => {
+    prefs.tokens[token] = name
+    delete prefs[name]
+  })
+}
