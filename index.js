@@ -2,14 +2,17 @@
 const Preferences = require('preferences')
 const inquirer = require('inquirer')
 const discord = require('./discord')
+const run = require('./run')
 
 const prefs = new Preferences('discord.js-repl')
 
 !(async () => {
+  const isRun = process.argv.includes('run')
   const version = process.argv.includes('-11') ? 'v11' : 'v12'
   let choice = await selectAccount(prefs)
   if (choice === 'new') choice = await askToken()
-  discord(version, choice, prefs)
+  if (isRun) run(version, choice)
+  else discord(version, choice, prefs)
 })()
 
 async function selectAccount(prefs) {
