@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 const Preferences = require('preferences')
 const inquirer = require('inquirer')
-const discord = require('./discord')
+const repl = require('./repl')
 const run = require('./run')
 
 const prefs = new Preferences('discord.js-repl')
@@ -24,7 +24,7 @@ const prefs = new Preferences('discord.js-repl')
 
 function start(isRun, version, token) {
   if (isRun) run(version, token)
-  else discord(version, token, prefs)
+  else repl(version, token, prefs)
 }
 
 async function selectAccount() {
