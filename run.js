@@ -1,8 +1,8 @@
 const { resolve, join } = require('path')
+const { existsSync } = require('fs')
 
 module.exports = (version, token) => {
-  const path = join(__dirname, 'node_modules/discord.js-' + version)
-  require('module-alias').addAlias('discord.js', path)
+  require('module-alias').addAlias('discord.js', findModulePath(version))
   process.env.DISCORD_TOKEN = token
 
   const Discord = require('discord.js')
@@ -21,4 +21,15 @@ module.exports = (version, token) => {
   )
 
   require(resolve(file))
+}
+
+// find discord.js installed directory
+const findModulePath = version => {
+  const subdir = join(__dirname, 'node_modules/discord.js-' + version)
+  if (existsSync(subdir)) return subdir
+
+  const samedir = join(__dirname, '../discord.js-' + version)
+  if (existsSync(samedir)) return samedir
+
+  throw '[Discord.js REPL] Cannot find module discord.js-' + version
 }
