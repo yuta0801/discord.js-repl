@@ -11,7 +11,7 @@ const prefs = new Preferences('discord.js-repl')
 
   const isRun = process.argv.includes('run')
   const isSelect = process.argv.includes('--select')
-  const version = process.argv.includes('-11') ? 'v11' : 'v12'
+  const version = process.argv.includes('-12') ? 'v12' : 'v13'
 
   if (prefs.last && !isSelect)
     return start(isRun, version, prefs.last)
