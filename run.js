@@ -7,7 +7,7 @@ module.exports = (version, token) => {
 
   const Discord = require('discord.js')
 
-  if (version === 'v11') {
+  if (version === 'v12') {
     const original = Discord.Client.prototype.login
     Discord.Client.prototype.login = function (_) {
       return original.call(this, _ || token)

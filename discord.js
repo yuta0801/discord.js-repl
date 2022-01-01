@@ -2,7 +2,9 @@ const repl = require('repl')
 
 module.exports = (version, token, prefs) => {
   const Discord = require('discord.js-' + version)
-  const client = new Discord.Client()
+  const client = new Discord.Client({
+    intents: Object.keys(Discord.Intents.FLAGS)
+  })
 
   console.log(`Node.js ${process.version}, Discord.js ${Discord.version}`)
 
